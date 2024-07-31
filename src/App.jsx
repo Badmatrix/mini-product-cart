@@ -42,7 +42,9 @@ function App() {
     async function getData() {
       try {
         dispatch({ type: "loading", payload: true });
-        const res = await fetch("http://localhost:8000/products");
+        const res = await fetch(
+          "https://run.mocky.io/v3/80084339-75b1-4fce-8606-f0af6b7706ff"
+        );
         const data = await res.json();
         dispatch({ type: "getProducts", payload: data });
       } catch (error) {
@@ -66,8 +68,8 @@ function App() {
  }
 
   return (
-    <div className="relative">
-      <div className={openModal ? "blur fixed" : ""}>
+    <div className={openModal ? 'fixed ': "relative"}>
+      <div className="">
         <div className="lg:grid lg:grid-cols-3 lg:gap-10 lg:mx-10 ">
           <Products
             products={products}
@@ -89,8 +91,8 @@ function App() {
         </div>
       </div>
       {openModal && (
-        <div className="w-full h-full bg-neutral-700/30 absolute top-0">
-          <div className="fixed left-0 right-0 items-center w-full md:w-4/5 lg:w-[50%] mx-auto my-7 lg:my-14">
+        <div className="w-full h-full bg-neutral-700/30 backdrop-blur-sm absolute top-0">
+          <div className="h-20 left-0 right-0 items-center w-full md:w-4/5 lg:w-[50%] mx-auto mt-7 lg:mt-14">
             <OrderModal
               carts={carts}
               closeModal={closeModal}
